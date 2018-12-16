@@ -12,8 +12,6 @@ Nos basamos en dos artículos:<br>
 1. [DNER Clinical (named entity recognition) from free clinical text to Snomed-CT concept](http://www.wseas.org/multimedia/journals/computers/2017/a205805-078.pdf). Ignacio Martinez Soriano. Juan Luis castro Peña. WSEAS Transactions on Computers, ISSN / E-ISSN: 1109-2750 / 2224-2872, Volume 16, 2017, Art. 10, pp. 83-91.
 1. [STMC: Semantic Tag Medical Concept Using Word2Vec Representation](https://ieeexplore.ieee.org/document/8417270) Ignacio Martinez Soriano, Juan Luis Castro Peña. 2018 IEEE 31st International Symposium on Computer-Based Medical Systems (CBMS). Karsltad (Sweden).
 
-$ \sum_{\forall i}{x_i^{2}} $
-
 Desarrollo de un **Clinical Semantic TAG** (Clinical Named Entity Recognition - NER).<br>
 Generamos un espacio vectorial de palabras embebidas, "Word Embedding", utilizamos un enfoque híbrido con dos versiones, creando distintos enfoques:
 * los Informes de Alta del Servicio de Urgencias del Hospital "Rafael Méndez", desde el año 2009-2016, mas las descripciones de los conceptos de Snomed-CT.
