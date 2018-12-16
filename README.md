@@ -24,7 +24,7 @@ Para generar el espacio vectorial final de palabras embebidas, utilizamos nuestr
 Basándonos en los vectores de ese Modelo, aplicamos los vectores de las palabras para generar el Vector de la Descripción de Snomed-CT:<br>
 Utilizamos el Modelo generado con Word2Vec, y lo aplicamos a la descripción de Snomed-CT, generando el siguiente vector asociado a la descripción **[d]**<br>
 Siendo V(w<sub>i</sub>) el Vector asociado a la palabra w<sub>i</sub>, según el modelo Word2Vec &Mu;.<br>
-* $ Descripcion-Snomed-CT(d) = (w<sub>1</sub>,w<sub>2</sub>,...,w<sub>n</sub>),=> V[d] = &sum;{i=1}^{n}v[w_{i}] = v[w_{1}]+v[w_{2}]+...+v[w_{n}] $
+* Descripcion-Snomed-CT(d) = (w<sub>1</sub>,w<sub>2</sub>,...,w<sub>n</sub>),=> V[d] = &sum;<sub>i=1</sub>v[w<sub>i</sub>] = v[w<sub>1</sub>]+v[w<sub>2</sub>]+...+v[w<sub>n</sub>]
 
 El Modelo **Snomed2Vec** final: quedaria así:
 
