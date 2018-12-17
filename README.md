@@ -177,5 +177,5 @@ Prueba
 
 ## Final notes:
 This documentation is part of my PH.D.Thesis and share to improve this new approach.
-For any comments or help needed with how to test *Snomed2Vec* tool, you can write to: ignacio.martinez@carm.es
+For any comments or help needed with how to test *Snomed2Vec* tool, you can write to: ignacio.martinez@carm.es or i.martinez@medlabmg.com
 
