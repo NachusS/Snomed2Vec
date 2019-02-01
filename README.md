@@ -1,9 +1,40 @@
 # Snomed2Vec - Use Model - Methods & Class. 
 ## A new Approach Snomed-CT with word embedding - Snomed2Vec - Model.
-### Introducción:
-**Autor:** Ignacio Martinez Soriano.<br>
-**Director Tesis:** Juan Luis Castro Peña.<br>
-**Fecha:** 16/12/2018.<br>
+
+## Fase 1 - Generación modelo Snomed2Vec.
+###  Corpus iniciales, Informes de Alta del Servicio de Urgencias, Wikipedia y Snomed-CT
+**Autor:** Ignacio Martinez Soriano. Data Scientist. Hospital Universitario "Rafael Mendez" & Medlab Media Group.
+
+**Coautores:** 
+* Juan Luis Castro Peña. Dept Ciencias de la computacion e Inteligencia Artificial. Universidad de Granada.
+* Jesualdo Fernandez Breis. Dept. Informática y Sistemas. Universidad de Murcia.
+* Ignacio San Román. Dept. Chief Artificial Intelligence Officer . Medlab Media Group.
+* Adrian Alonso Barriuso. Research Technical Lead. Medlab Media Group.
+
+**Fecha:** 28/01/2019.<br>
+### Introducción Resumen:
+Aplicamos la libreria gensim para generar varios modelos Word2Vec (Skip-Gram).<br>
+Se genera los modelos, base, con las palabras vectorizadas de todos los textos.<br>
+Se prepara los datos para generar modelos vectorizados.
+
+### Datos de Entrada:
+* /DataWork/Corpus-101.txt (Corpus y tokens de todos los Informes de Alta de Urgencias).
+* /DataWork/wikipediaSpanish-2019.txt
+* /Snomed-CT/Diccionario/Snomed-CorpusTerm-Jer.txt, Códigos Snomed Activos, con su jerarquia y Descripción.
+
+### Productos generados, finales:
+
+1. Modelo con los Datos de Inf-Alta + Descripciones Snomed. Sin pre-trained: **w2v-SK-s300-w5-m2-Total-Key.txt**
+1. Modelo con los Datos de Wikipedia español + Descripciones Snomed-CT:
+
+Utilizando los modelos anterioes, generamos los espacios vectoriales finales, aplicando el modelo a la descripción de los términos de Snomed-CT.
+
+* Un registro para cada concepto con la siguiente estructura:<br>
+    **|Id-Concept | TokensDescripcion | Jerarquia | [Vector de la Descripción]|**
+    
+    El Vector descripción está compuesto, según el modelo del dominio elegido (general o específico):
+    * $ Descripcion (d) = (w_1,w_2,...,w_n), V[d] = \sum_{i=1}^{n}v[x_{i}]=v[x_{1}]+v[x_{2}]+...+v[x_{n}] $
+_________________________________________________________________________________________
 
 ## 1. Introducción:
 Creación de un nuevo enfoque **Snomed2Vec**<br>
