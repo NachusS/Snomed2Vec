@@ -1,0 +1,174 @@
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="Snomed2Vec framework" content="">
+    <meta name="Ignacio Martinez Soriano" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Snomed2Vec with Word2Vec</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" id="bootstrap-css">
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/jumbotron.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-Snomed.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-tab.css') }}" rel="stylesheet">
+  </head>
+
+  <body>
+    {% include 'includes/_navbar01.html' %}
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" />
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Snomed2Vec</h1>
+        <p>New representation of Snomed-CT with word embeddings using Word2Vec.</p>
+      </div>
+    </div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Nav tabs -->
+            <div class="card">
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-home"></i>  <span>Home</span></a></li>
+                <li role="presentation"><a href="#test" aria-controls="test" role="tab" data-toggle="tab"><i class="fa fa-user"></i>  <span>Test</span></a></li>
+                <li role="presentation"><a href="#visualization" aria-controls="visualization" role="tab" data-toggle="tab"><i class="fa fa-envelope-o"></i>  <span>Visualization</span></a></li>
+                <li role="presentation"><a href="#evaluate" aria-controls="evaluation" role="tab" data-toggle="tab"><i class="fa fa-cog"></i>  <span>Evaluate</span></a></li>
+                <li role="presentation"><a href="#authors" aria-controls="evaluation" role="tab" data-toggle="tab"><i class="fa fa-cog"></i>  <span>Authors</span></a></li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <p><strong>Snomed2Vec</strong>, is a new approach to use Spanish Snomed-CT.</p>
+					You can get the most similar clincial concept of a text, from Snomed-CT.<br>
+					We use <strong>word embedding</strong> from the description Terms of the Spanish Snomed-CT, using <strong>Word2Vec</strong> framework.<br>
+					We train a space vector model with two kind of big Corpus. Local domain with emergency discharges reports and general domain with Wikipedia.<br>
+					The final Snomed2Vec model, it's develope with the idConcept, Term, hierachy and Vector of the descriptions Term from the Spanish Snomed-CT.<br>
+					To identify the most <strong>similar concepts</strong> in our model with use the cosine distance similarity from the vector Space Model Snomed2Vec.<br>
+					<br>
+					<p>Try it, and Test-tab, to find the most similar Spanish Snomed-CT concepts, from a text.</p>
+					<div class="list-group">
+						<a href="https://github.com/NachusS/Snomed2Vec" class="list-group-item list-group-item-action list-group-item-primary">If you want to know more about this tool. You can doi it at this Github Repo.</a>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="test">
+                  <form class="form-horizontal">
+                  <fieldset>
+                  <!-- Form Name -->
+                  <legend>Search the concept in Snomed2Vec:</legend>
+
+                  <!-- Multiple Radios -->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="radios">Models:</label>
+                    <div class="col-md-4">
+                    <div class="radio">
+                      <label for="radios-0">
+                        <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+                        local domain
+                      </label>
+                  	</div>
+                    <div class="radio">
+                      <label for="radios-1">
+                        <input type="radio" name="radios" id="radios-1" value="2">
+                        general domain
+                      </label>
+                  	</div>
+                    </div>
+                  </div>
+
+                  <!-- Select Basic -->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="selectbasic">Hierarchy:</label>
+                    <div class="col-md-4">
+                      <select id="selectbasic" name="selectbasic" class="form-control">
+                        <option value="1">Alls</option>
+                        <option value="2">Hallazgo Clínico</option>
+                        <option value="3">Procedure</option>
+                        <option value="4">Substance</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Search input-->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="searchinput">Insert text to search:</label>
+                    <div class="col-md-6">
+                      <input id="searchinput" name="searchinput" type="search" placeholder="diagnostic, procedure, substance..." class="form-control input-md">
+
+                    </div>
+                  </div>
+
+                  <!-- Button -->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton">Concept Search</label>
+                    <div class="col-md-4">
+                      <button id="singlebutton" name="singlebutton" class="btn btn-primary">Search</button>
+                    </div>
+                  </div>
+
+                  </fieldset>
+                  </form>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="visualization">
+                  <h3>Visualization Results:</h3>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="evaluate">
+                  <h3>Evaluation Test:</h3>
+                  <p>We want your opinion about this Tool.</p>
+                  <p>Please, fill this survey to know your profesional point of view:</p>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="authors">
+               <div role="tabpanel" class="tab-pane" id="authors">
+                  <strong>Authors:</strong> <br>
+					<div class="list-group">
+						<a href="https://nachuss.github.io/" class="list-group-item list-group-item-action">Ignacio Martinez Soriano. Hospital University "Rafael Mendez" and MedLab Media Group.</a>
+						<a href="http://decsai.ugr.es/index.php?p=profesores&id=7932" class="list-group-item list-group-item-action">Juan Luis Castro Peña. Dept Ciencias de la computacion e Inteligencia Artificial. Universidad de Granada.</a>
+						<a href="https://webs.um.es/jfernand/miwiki/doku.php" class="list-group-item list-group-item-action">Jesualdo Fernandez Breis. Dept. Informática y Sistemas. Universidad de Murcia.</a>
+						<a href="https://www.medlabmediagroup.com/es/inicio/" class="list-group-item list-group-item-action">Ignacio San Román. Dept. Chief Artificial Intelligence Officer . Medlab Media Group.</a>
+						<a href="https://www.medlabmediagroup.com/es/inicio/" class="list-group-item list-group-item-action">Adrian Alonso Barriuso. Research Technical Lead. Medlab Media Group.</a>
+					</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2019 NachusS.</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="static/js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="static/js/jquery.min.js"><\/script>')</script>
+    <script src="static/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+
+
+
+{% endblock %}
